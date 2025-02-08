@@ -1,4 +1,6 @@
-## Hi there 👋
+## Korysnosti WebTools
+
+[Our TG-channel](https://t.me/+XjkM4ZLP7JcxOGYy)
 
 <!--
 **korysnosti/korysnosti** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
