@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор Telegram-посилань для поширення</title>
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwcHgiIGhlaWdodD0iODAwcHgiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBpZD0iU1ZHUmVwb19iZ0NhcnJpZXIiIHN0cm9rZS13aWR0aD0iMCIvPjxnIGlkPSJTVkdSZXBvX3RyYWNlQ2FycmllciIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PGcgaWQ9IlNWR1JlcG9faWNvbkNhcnJpZXIiPiA8cGF0aCBkPSJNNy4wNTAyNSAxLjUzNTUzQzguMDMzNDQgMC41NTIzNDggOS4zNjY5MiAwIDEwLjc1NzQgMEMxMy42NTI4IDAgMTYgMi4zNDcyMSAxNiA1LjI0MjY0QzE2IDYuNjMzMDggMTUuNDQ3NyA3Ljk2NjU2IDE0LjQ2NDUgOC45NDk3NUwxMi40MTQyIDExTDExIDkuNTg1NzlMMTMuMDUwMyA3LjUzNTUzQzEzLjY1ODQgNi45Mjc0MiAxNCA2LjEwMjY0IDE0IDUuMjQyNjRDMTQgMy40NTE3OCAxMi41NDgyIDIgMTAuNzU3NCAyQzkuODk3MzYgMiA5LjA3MjU4IDIuMzQxNjMgOC40NjQ0NyAyLjk0OTc1TDYuNDE0MjEgNUw1IDMuNTg1NzlMNy4wNTAyNSAxLjUzNTUzWiIgZmlsbD0iIzAwOTE5NCIvPiA8cGF0aCBkPSJNNy41MzU1MyAxMy4wNTAzTDkuNTg1NzkgMTFMMTEgMTIuNDE0Mkw4Ljk0OTc1IDE0LjQ2NDVDNy45NjY1NiAxNS40NDc3IDYuNjMzMDggMTYgNS4yNDI2NCAxNkMyLjM0NzIxIDE2IDAgMTMuNjUyOCAwIDEwLjc1NzRDMCA5LjM2NjkzIDAuNTUyMzQ3IDguMDMzNDQgMS41MzU1MyA3LjA1MDI1TDMuNTg1NzkgNUw1IDYuNDE0MjFMMi45NDk3NSA4LjQ2NDQ3QzIuMzQxNjMgOS4wNzI1OCAyIDkuODk3MzYgMiAxMC43NTc0QzIgMTIuNTQ4MiAzLjQ1MTc4IDE0IDUuMjQyNjQgMTRDNi4xMDI2NCAxNCA2LjkyNzQyIDEzLjY1ODQgNy41MzU1MyAxMy4wNTAzWiIgZmlsbD0iIzAwOTE5NCIvPiA8cGF0aCBkPSJNNS43MDcxMSAxMS43MDcxTDExLjcwNzEgNS43MDcxMUwxMC4yOTI5IDQuMjkyODlMNC4yOTI4OSAxMC4yOTI5TDUuNzA3MTEgMTEuNzA3MVoiIGZpbGw9IiMwMDkxOTQiLz4gPC9nPjwvc3ZnPg==" type="image/svg+xml">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            /* padding: 20px; */
+            background-color: #f2f2f7;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1c1c1e;
+            font-weight: 500;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d1d6;
+            border-radius: 10px;
+            background-color: #ffffff;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #007aff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 16px;
+        }
+
+        button:hover {
+            background-color: #0066d6;
+        }
+
+        button:active {
+            background-color: #0055b3;
+        }
+
+        .result {
+            background-color: #eee;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #d1d1d6;
+            margin-top: 0px;
+            word-break: break-all;
+            min-height: 12px;
+        }
+
+        .error {
+            color: #ff3b30;
+            font-size: 14px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .copy {
+            font-style: italic;
+            color: #aaa;
+            margin-top: 12px;
+        }
+
+        .copy a {
+            text-decoration: none;
+            color: #888
+        }
+        .copy a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h3>Генератор Telegram-посилань для поширення</h3>
+    <div class="form-group">
+        <label for="url">Посилання:</label>
+        <input type="url" id="url" placeholder="https://">
+        <div id="urlError" class="error">Будь ласка, введіть коректне посилання</div>
+    </div>
+
+    <div class="form-group">
+        <label for="text">Текст повідомлення:</label>
+        <textarea id="text" placeholder="Введіть текст повідомлення"></textarea>
+    </div>
+
+    <button onclick="convertUrl()">Конвертувати</button>
+
+    <div class="form-group">
+        <label for="result">Результат:</label>
+        <div id="result" class="result" contenteditable="false"></div>
+    </div>
+
+    <button onclick="copyToClipboard()">Скопіювати в буфер</button>
+    
+    <!-- <button onclick="shareToX()">X/Twitter</button> -->
+
+    <div class="copy">Створено телеграм-каналом <a href="https://t.me/+XjkM4ZLP7JcxOGYy" title="Корисні та цікаві програми, застосунки, сервіси, ШІ та лайфхаки для ваших ґаджетів">Корисності для Ґаджетів 🇺🇦</a></div>
+
+    <script>
+        //document.getElementById('url').value = 'https://t.me/korysnosti/2287';
+        //document.getElementById('text').value = 'Відеоплеєр для Windows, який генерує і перекладає субтитри в реальному часі';
+
+
+        function isValidUrl(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (_) {
+                return false;
+            }
+        }
+
+        function convertUrl() {
+            const url = document.getElementById('url').value;
+            const text = document.getElementById('text').value;
+            const urlError = document.getElementById('urlError');
+
+            if (!isValidUrl(url)) {
+                urlError.style.display = 'block';
+                return;
+            }
+
+            urlError.style.display = 'none';
+            
+            const encodedUrl = encodeURIComponent(url);
+            const encodedText = encodeURIComponent(text);
+            
+            const result = `https://t.me/share/url?url=${encodedUrl}&text=${encodedText}`;
+            document.getElementById('result').textContent = result;
+        }
+
+        // function shareToX() {
+        //     const tweetText = encodeURIComponent(document.getElementById('text').value);
+        //     const urlShare = encodeURIComponent(document.getElementById('url').value);
+        //     // const xShareUrl = `https://x.com/intent/tweet?text=${tweetText}&url=${urlShare}`;
+        //     // const xShareUrl = `https://x.com/intent/tweet?text=${tweetText + '%0A%0A' + urlShare}`;
+        //     // window.open(xShareUrl, '_blank');
+
+        //     const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${urlShare}&quote=${tweetText}`;
+        //     // alert(`https://www.facebook.com/sharer/sharer.php?u=${urlShare}&quote="${tweetText}"`)
+        //     window.open(fbShareUrl, '_blank');
+        // }
+
+        function copyToClipboard() {
+            const resultElement = document.getElementById('result');
+            const text = resultElement.textContent;
+
+            navigator.clipboard.writeText(text).then(() => {
+                // Візуальне підтвердження копіювання
+                const selection = window.getSelection();
+                const range = document.createRange();
+                range.selectNodeContents(resultElement);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }).catch(err => {
+                console.error('Помилка копіювання: ', err);
+                // Якщо API не доступне, просто виділяємо текст
+                const selection = window.getSelection();
+                const range = document.createRange();
+                range.selectNodeContents(resultElement);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            });
+        }
+
+        // Очищення помилки при введенні нового URL
+        document.getElementById('url').addEventListener('input', function() {
+            document.getElementById('urlError').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
