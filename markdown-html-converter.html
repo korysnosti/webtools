@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конвертер Markdown в HTML</title>
+    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAE7mlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgOS4xLWMwMDIgNzkuYTFjZDEyZiwgMjAyNC8xMS8xMS0xOTowODo0NiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0RXZ0PSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VFdmVudCMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDI2LjQgKFdpbmRvd3MpIiB4bXA6Q3JlYXRlRGF0ZT0iMjAyNS0wNC0yMlQxNDoxODowOSswMzowMCIgeG1wOk1vZGlmeURhdGU9IjIwMjUtMDQtMjJUMTQ6MjA6NDcrMDM6MDAiIHhtcDpNZXRhZGF0YURhdGU9IjIwMjUtMDQtMjJUMTQ6MjA6NDcrMDM6MDAiIGRjOmZvcm1hdD0iaW1hZ2UvcG5nIiBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjQyYTliMWE2LTA3YmQtY2Y0Ni1hOTA4LTU0OTgwZWZlNzlmZSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo0MmE5YjFhNi0wN2JkLWNmNDYtYTkwOC01NDk4MGVmZTc5ZmUiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo0MmE5YjFhNi0wN2JkLWNmNDYtYTkwOC01NDk4MGVmZTc5ZmUiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjQyYTliMWE2LTA3YmQtY2Y0Ni1hOTA4LTU0OTgwZWZlNzlmZSIgc3RFdnQ6d2hlbj0iMjAyNS0wNC0yMlQxNDoxODowOSswMzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDI2LjQgKFdpbmRvd3MpIi8+IDwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pry4ny8AAAOUSURBVHic7Zy9kpswFIXPMil2x0XK8FgunGwZjd8rRCnzU+xjud3Cs+lIYZHBLAiBpHv4ud+MS9D1+WxZspAe6rqGwqNgF7B3VAAZFUBGBZBRAWRUABkVQEYFkFEBZFQAGRVARgWQUQFkVAAZFUBGBZChCCgr+8ho10dZ2QOjXXEBZWVPAJ7Lyn6UbnsIV8uprOwX6bZFBbjwDwAsgOMSJLgajrjV9CQtQUxAJ3xgARI64QMECSICesJvsCBJ6Am/wUJQQnYBnvAbLG4SxH6Y3Q/uEf6aRCRkFRAQPgAYANfL2fzNWUuby9lcAby5toewEJCQTcDE8P/kqmOIy9n8wgIkZBGw9PAbliAhuYC1hN/AlpBUwNrCb2BKeEj1bGiq8MvKfvW1czmbHyN1zL7ehfuE8ffw5qRFk+QbkOGTbwdeocy6nvFNiBaw1m5nCGkJUQK2Fn6DpITZArYafoOUhFkCth5+g4SEyQL2En5DbgmTBOwt/IacEoLnAVLjfMdQGybg2qjrpecJQQJSfvKdAN99mJiAiV5SCaNd0F67nSFSd0deARp+PyklDArQ8P2kktArQMMPI4WEdwI0/GnESrgbBUmEv+ZhqI+5o6P/ApbyyR8ZpoYME6Ouj2GOhMJduIjw186c7qjQ8NMyVUIB4DfGZ6Ya/gRaEnxYAD91fwCZAsBnjI8ODq6rUgJo/Rj7MACeC9e1XDHeZ6mEAKaOhAoAUAlpmDMM1YlYB9pErHWjrBLWvh7QR8wawbtRkHZH04hdoOkdhqqEMFKsjg3OA1SCn1RLk96JmEroJ+W68OhMWCXck3pRXh9L6bDIx1JaBUjNE4buT1sPyLV3YNKfcXvtjnJu3Jj8b+jeJOTeNTPr7+i9SJDYsjR7PWDrEqT2i0UtyGxVguRmvegVsa1JkN4p+SH2BsBNggvXwH8AhikrewoYoprIkmZdz9immmyfMLDux1sY4QOJd8qvtTtihQ9kOCtibRKY4QOZTktZiwR2+EDG84KWLmEJ4QOZT8yaKEH6yDJ6+IDAmXEBEgyAF8KRZS/w15Q9fEDo1ESPBINb+K8SdXRqekW/BAOh8AHBc0N7JBiQwm/V1JVgIBg+kHgiFkJrskYNv03rDFHR8AEAdV2Lvz59+/7IaHekpgOjXfFvgHKP7g8gowLIqAAyKoCMCiCjAsioADIqgIwKIKMCyKgAMiqAjAogowLIqAAyKoDMP3eaP0Zam4vmAAAAAElFTkSuQmCC" type="image/svg+xml">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            /* padding: 20px; */
+            background-color: #f2f2f7;
+        }
+        @media (orientation: portrait) {
+            body {
+                padding: 0 15px;
+            }
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1c1c1e;
+            font-weight: 500;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #d1d1d6;
+            border-radius: 10px;
+            background-color: #ffffff;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #007aff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 16px;
+        }
+        button:hover {
+            background-color: #0066d6;
+        }
+        button:active {
+            background-color: #0055b3;
+        }
+        .result {
+            background-color: #eee;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #d1d1d6;
+            margin-top: 0px;
+            word-break: break-all;
+            min-height: 12px;
+        }
+        .error {
+            color: #ff3b30;
+            font-size: 14px;
+            margin-top: 4px;
+            display: none;
+        }
+        .copy {
+            font-style: italic;
+            color: #aaa;
+            margin-top: 12px;
+        }
+        .copy a {
+            text-decoration: none;
+            color: #888
+        }
+        .copy a:hover {
+            text-decoration: underline;
+        }
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Стилі для перемикача-"качельки" */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+            margin-bottom: 0;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #2196F3;
+            border-radius: 34px;
+            transition: .3s;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            border-radius: 50%;
+            transition: .3s;
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(30px);
+        }
+        
+        .toggle-label {
+            font-weight: 500;
+            color: #1c1c1e;
+            /* cursor: pointer; */
+            user-select: none;
+            text-align: center;
+        }
+        
+        .toggle-label.active {
+            color: #007aff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Конвертер Markdown ⟷ HTML</h1>
+    
+    <div class="form-group" id="direction-selector">
+        <label>Напрямок конвертації:</label>
+        <div class="radio-group">
+            <span id="md-label" class="toggle-label active">Markdown → HTML</span>
+            <label class="toggle-switch">
+                <input type="checkbox" id="direction-toggle">
+                <span class="toggle-slider"></span>
+            </label>
+            <span id="html-label" class="toggle-label">HTML → Markdown</span>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label id="input-label" for="input-text">Вставте Markdown текст:</label>
+        <textarea id="input-text" placeholder="Вставте текст тут..."></textarea>
+        <div class="error" id="input-error">Помилка при конвертації.</div>
+        <button id="paste-btn">Вставити з буферу обміну</button>
+    </div>
+    
+    <div class="form-group">
+        <label id="output-label" for="output-text">HTML результат:</label>
+        <textarea id="output-text" readonly></textarea>
+        <button id="copy-btn">Скопіювати в буфер обміну</button>
+    </div>
+    
+    <div class="copy">Створено телеграм-каналом <a href="https://t.me/+XjkM4ZLP7JcxOGYy" title="Корисні та цікаві програми, застосунки, сервіси, ШІ та лайфхаки для ваших ґаджетів">Корисності для Ґаджетів 🇺🇦</a></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputText = document.getElementById('input-text');
+            const outputText = document.getElementById('output-text');
+            const pasteBtn = document.getElementById('paste-btn');
+            const copyBtn = document.getElementById('copy-btn');
+            const inputError = document.getElementById('input-error');
+            const inputLabel = document.getElementById('input-label');
+            const outputLabel = document.getElementById('output-label');
+            const directionToggle = document.getElementById('direction-toggle');
+            const mdLabel = document.getElementById('md-label');
+            const htmlLabel = document.getElementById('html-label');
+
+            // Функція для конвертації MD в HTML
+            function convertMarkdownToHtml(text) {
+                // Обробляємо спочатку подвійні символи, потім одинарні
+                
+                // Збереження посилань [текст](url)
+                text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+                
+                // Bold: **текст** або *текст* => <b>текст</b>
+                text = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+                text = text.replace(/\*(.*?)\*/g, '<b>$1</b>');
+                
+                // Italic: _текст_ => <i>текст</i>
+                text = text.replace(/_(.*?)_/g, '<i>$1</i>');
+                
+                // Code: `текст` => <code>текст</code>
+                text = text.replace(/`(.*?)`/g, '<code>$1</code>');
+                
+                // Strike: ~~текст~~ або ~текст~ => <s>текст</s>
+                text = text.replace(/~~(.*?)~~/g, '<s>$1</s>');
+                text = text.replace(/~(.*?)~/g, '<s>$1</s>');
+                
+                // Underline: __текст__ => <u>текст</u>
+                text = text.replace(/__(.*?)__/g, '<u>$1</u>');
+                
+                // Spoiler: ||текст|| => <span class="tg-spoiler">текст</span>
+                text = text.replace(/\|\|(.*?)\|\|/g, '<span class="tg-spoiler">$1</span>');
+                
+                return text;
+            }
+
+            // Функція для конвертації HTML в MD
+            function convertHtmlToMarkdown(text) {
+                // Конвертація посилань <a href="url">текст</a> => [текст](url)
+                text = text.replace(/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/g, '[$2]($1)');
+                
+                // Конвертація тегів <span class="tg-spoiler">текст</span> => ||текст||
+                text = text.replace(/<span class="tg-spoiler"[^>]*>([^<]+)<\/span>/g, '||$1||');
+                
+                // Конвертація <code>текст</code> => `текст`
+                text = text.replace(/<code[^>]*>([^<]+)<\/code>/g, '`$1`');
+                
+                // Конвертація <s>текст</s> => ~~текст~~
+                text = text.replace(/<s[^>]*>([^<]+)<\/s>/g, '~~$1~~');
+                
+                // Конвертація <u>текст</u> => __текст__
+                text = text.replace(/<u[^>]*>([^<]+)<\/u>/g, '__$1__');
+                
+                // Конвертація <i>текст</i> => _текст_
+                text = text.replace(/<i[^>]*>([^<]+)<\/i>/g, '_$1_');
+                
+                // Конвертація <b>текст</b> => **текст** (обираємо подвійні зірочки як більш валідний формат)
+                text = text.replace(/<b[^>]*>([^<]+)<\/b>/g, '**$1**');
+                
+                return text;
+            }
+
+            // Функція оновлення міток полів
+            function updateLabels() {
+                const isHtmlToMd = directionToggle.checked;
+                
+                // Оновлюємо стилі міток перемикача
+                mdLabel.classList.toggle('active', !isHtmlToMd);
+                htmlLabel.classList.toggle('active', isHtmlToMd);
+                
+                if (!isHtmlToMd) {
+                    inputLabel.textContent = 'Вставте Markdown текст:';
+                    outputLabel.textContent = 'HTML результат:';
+                    inputText.placeholder = 'Вставте Markdown текст тут...';
+                } else {
+                    inputLabel.textContent = 'Вставте HTML текст:';
+                    outputLabel.textContent = 'Markdown результат:';
+                    inputText.placeholder = 'Вставте HTML текст тут...';
+                }
+                
+                // Запускаємо конвертацію з новим напрямком
+                convertText();
+            }
+
+            // Загальна функція конвертації
+            function convertText() {
+                try {
+                    const input = inputText.value;
+                    let output;
+                    
+                    if (!directionToggle.checked) {
+                        output = convertMarkdownToHtml(input);
+                    } else {
+                        output = convertHtmlToMarkdown(input);
+                    }
+                    
+                    // Виводимо результат
+                    outputText.value = output;
+                    inputError.style.display = 'none';
+                } catch (e) {
+                    inputError.style.display = 'block';
+                    console.error('Помилка при конвертації:', e);
+                }
+            }
+
+            // Конвертація при введенні тексту
+            inputText.addEventListener('input', convertText);
+
+            // Встановлюємо відстежування зміни напрямку конвертації
+            directionToggle.addEventListener('change', updateLabels);
+
+            // Вставка з буферу обміну
+            pasteBtn.addEventListener('click', async function() {
+                try {
+                    const text = await navigator.clipboard.readText();
+                    inputText.value = text;
+                    // Викликаємо подію input, щоб запустити конвертацію
+                    inputText.dispatchEvent(new Event('input'));
+                } catch (err) {
+                    alert('Не вдалося отримати доступ до буферу обміну. Перевірте дозволи браузера.');
+                    console.error('Помилка при вставці з буферу обміну:', err);
+                }
+            });
+
+            // Копіювання в буфер обміну
+            copyBtn.addEventListener('click', async function() {
+                try {
+                    outputText.select();
+                    await navigator.clipboard.writeText(outputText.value);
+                    // Показуємо повідомлення про успішне копіювання
+                    const originalText = copyBtn.textContent;
+                    copyBtn.textContent = 'Скопійовано!';
+                    setTimeout(() => {
+                        copyBtn.textContent = originalText;
+                    }, 2000);
+                } catch (err) {
+                    alert('Не вдалося скопіювати. Перевірте дозволи браузера.');
+                    console.error('Помилка при копіюванні в буфер обміну:', err);
+                }
+            });
+            
+            // Ініціалізація інтерфейсу
+            updateLabels();
+        });
+    </script>
+</body>
+</html>
