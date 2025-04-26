@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml;base64,PCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KDTwhLS0gVXBsb2FkZWQgdG86IFNWRyBSZXBvLCB3d3cuc3ZncmVwby5jb20sIFRyYW5zZm9ybWVkIGJ5OiBTVkcgUmVwbyBNaXhlciBUb29scyAtLT4KPHN2ZyBmaWxsPSIjMjM5RTlFIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDBweCIgaGVpZ2h0PSI4MDBweCIgdmlld0JveD0iMCAwIDUyIDUyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MiA1MiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+Cg08ZyBpZD0iU1ZHUmVwb19iZ0NhcnJpZXIiIHN0cm9rZS13aWR0aD0iMCIvPgoNPGcgaWQ9IlNWR1JlcG9fdHJhY2VyQ2FycmllciIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cg08ZyBpZD0iU1ZHUmVwb19pY29uQ2FycmllciI+IDxwYXRoIGQ9Ik0yMCwzNy41YzAtMC44LTAuNy0xLjUtMS41LTEuNWgtMTVDMi43LDM2LDIsMzYuNywyLDM3LjV2MTFDMiw0OS4zLDIuNyw1MCwzLjUsNTBoMTVjMC44LDAsMS41LTAuNywxLjUtMS41IFYzNy41eiIvPiA8cGF0aCBkPSJNOC4xLDIySDMuMmMtMSwwLTEuNSwwLjktMC45LDEuNGw4LDguM2MwLjQsMC4zLDEsMC4zLDEuNCwwbDgtOC4zYzAuNi0wLjYsMC4xLTEuNC0wLjktMS40aC00LjcgYzAtNSw0LjktMTAsOS45LTEwVjZDMTUsNiw4LjEsMTMsOC4xLDIyeiIvPiA8cGF0aCBkPSJNNDEuOCwyMC4zYy0wLjQtMC4zLTEtMC4zLTEuNCwwbC04LDguM2MtMC42LDAuNi0wLjEsMS40LDAuOSwxLjRoNC44YzAsNi00LjEsMTAtMTAuMSwxMHY2IGM5LDAsMTYuMS03LDE2LjEtMTZINDljMSwwLDEuNS0wLjksMC45LTEuNEw0MS44LDIwLjN6Ii8+IDxwYXRoIGQ9Ik01MCwzLjVDNTAsMi43LDQ5LjMsMiw0OC41LDJoLTE1QzMyLjcsMiwzMiwyLjcsMzIsMy41djExYzAsMC44LDAuNywxLjUsMS41LDEuNWgxNWMwLjgsMCwxLjUtMC43LDEuNS0xLjUgVjMuNXoiLz4gPC9nPgoNPC9zdmc+" />
+    <title>Text Replacement</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            /* padding: 20px; */
+            background-color: #f2f2f7;
+        }
+        @media (orientation: portrait) {
+            body {
+                padding: 0 15px;
+            }
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1c1c1e;
+            font-weight: 500;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #d1d1d6;
+            border-radius: 10px;
+            background-color: #ffffff;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        textarea {
+            min-height: 60px;
+            resize: vertical;
+        }
+        .textarea-60 {
+            margin-bottom: 10px;
+        }
+        .textarea-100 {
+            min-height: 100px;
+        }
+        button {
+            background-color: #007aff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 16px;
+        }
+        button:hover {
+            background-color: #0066d6;
+        }
+        button:active {
+            background-color: #0055b3;
+        }
+        .result {
+            background-color: #eee;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #d1d1d6;
+            margin-top: 0px;
+            word-break: break-all;
+            min-height: 12px;
+        }
+        .error {
+            color: #ff3b30;
+            font-size: 14px;
+            margin-top: 4px;
+            display: none;
+        }
+        .copy {
+            font-style: italic;
+            color: #aaa;
+            margin-top: 14px;
+        }
+        .copy a {
+            text-decoration: none;
+            color: #888
+        }
+        .copy a:hover {
+            text-decoration: underline;
+        }
+        .checkbox-inline {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        #showInvisible, #stripInvisible {
+            width: 20px;
+        }
+        .showInvisibleLabel {
+            margin: 0;
+        }
+        #copyResultMsg {
+            font-size: 14px;
+            color: #888;
+            margin-top: 5px;
+            display: none;
+        }
+        /* Початково приховане поле для візуалізованого тексту */
+        #visualizedTextGroup {
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Автозаміна текста</h1>
+
+    <div class="container">
+        <div class="input-group">
+            <label for="textInput">Текст для заміни:</label>
+            <textarea class="textarea-100" id="textInput" placeholder="Введіть текст..."></textarea>
+            <div class="checkbox-inline">
+                <input type="checkbox" id="showInvisible">
+                <label for="showInvisible" class="showInvisibleLabel">Показати невидимі символи</label>
+            </div>
+            <!-- Нове поле для відображення тексту з візуалізованими невидимими символами -->
+            <div id="visualizedTextGroup" class="input-group">
+                <label for="visualizedText">Текст з відображенням невидимих символів:</label>
+                <textarea class="textarea-100" id="visualizedText" readonly class="invisible-symbols"></textarea>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="searchText">Що шукати:</label>
+            <textarea class="textarea-60" id="searchText" placeholder="Введіть текст для пошуку..."></textarea>
+            <div class="checkbox-inline">
+                <input type="checkbox" id="stripInvisible">
+                <label for="stripInvisible" class="showInvisibleLabel">Очищати спеціальні символи після заміни</label>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="replaceText">На що замінити:</label>
+            <textarea class="textarea-60" id="replaceText" placeholder="Введіть текст для заміни..."></textarea>
+            <button class="button" onclick="clearSearchReplace()">Очистити форму</button>
+        </div>
+
+        <button class="button" onclick="replaceText()">Замінити текст</button>
+
+        <div class="input-group">
+            <label for="resultText">Результат:</label>
+            <textarea class="textarea-100" id="resultText" readonly></textarea>
+            <button class="button" onclick="copyResultText()">Скопіювати результат</button>
+            <div id="copyResultMsg">Не вдалося скопіювати до буфера обміну.</div>
+        </div>
+
+        <div class="copy">Створено телеграм-каналом <a href="https://t.me/+XjkM4ZLP7JcxOGYy" title="Корисні та цікаві програми, застосунки, сервіси, ШІ та лайфхаки для ваших ґаджетів">Корисності для Ґаджетів 🇺🇦</a></div>
+    </div>
+
+    <script>
+        const invisibleVisualMap = {
+          '\u00A0': '⍽',   // Невидимий символ (non-breaking space) — використовується для створення пробілу, що не розривається на кінці рядка.
+          '\u202F': '⍽',   // Невидимий пробіл (narrow non-breaking space) — схожий на звичайний пробіл, але вже, використовується в типографії для числа або одиниць вимірювання.
+          '\u200B': '◦',    // Невидимий символ (zero-width space) — не має видимого розміру, використовується для розділення слів чи символів без видимого пробілу.
+          '\u200C': '˽',    // Невидимий символ (zero-width non-joiner) — забороняє злиття літер або символів в певних шрифтах, використовується в мовах з лігатурами.
+          '\u200D': '≀',    // Невидимий символ (zero-width joiner) — навпаки, змушує літери або символи зливатися в лігатуру.
+          '\u2060': '⭾',   // Невидимий символ (word joiner) — забороняє розрив рядка в певних місцях, але не додає видимого пробілу.
+          '\uFEFF': '␣',    // BOM (byte order mark) — використовується для позначення порядку байтів у текстових файлах.
+          '\u180E': '⎵'    // Невидимий символ (Mongolian vowel separator) — використовується в монгольській письмовій системі для розділення голосних.
+        };
+
+        const structuralVisualMap = {
+            '\n': '⤶',
+            '\t': '↦'
+        };
+
+        const invisibleStripList = Object.keys(invisibleVisualMap);
+
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function visualizeInvisible(text) {
+            const combined = { ...invisibleVisualMap, ...structuralVisualMap };
+            for (const [code, symbol] of Object.entries(combined)) {
+                const regex = new RegExp(code, 'g');
+                text = text.replace(regex, symbol);
+            }
+            return text;
+        }
+
+        function stripSpecials(text) {
+            const chars = invisibleStripList.join('|').replace(/\\u/g, '\\u');
+            const pattern = new RegExp(chars, 'g');
+            return text.replace(pattern, '');
+        }
+
+        function updateVisualizedText() {
+            const textInputValue = document.getElementById('textInput').value;
+            const visualizedTextArea = document.getElementById('visualizedText');
+            visualizedTextArea.value = visualizeInvisible(textInputValue);
+        }
+
+        function replaceText() {
+            const textInputValue = document.getElementById('textInput').value;
+            const searchText = document.getElementById('searchText').value;
+            const replaceTextValue = document.getElementById('replaceText').value;
+            const shouldStrip = document.getElementById('stripInvisible').checked;
+
+            let result = textInputValue;
+
+            if (searchText) {
+                const regex = new RegExp(escapeRegExp(searchText), 'g');
+                result = result.replace(regex, replaceTextValue);
+            }
+
+            if (shouldStrip) {
+                result = stripSpecials(result);
+            }
+
+            const resultTextArea = document.getElementById('resultText');
+            resultTextArea.value = result;
+        }
+
+        function copyResultText() {
+            const textarea = document.getElementById('resultText');
+            textarea.select();
+            try {
+                if (document.execCommand('copy')) {
+                    document.getElementById('copyResultMsg').style.display = 'none';
+                } else {
+                    throw new Error();
+                }
+            } catch {
+                document.getElementById('copyResultMsg').style.display = 'block';
+            }
+        }
+
+        function clearSearchReplace() {
+            document.getElementById('searchText').value = '';
+            document.getElementById('replaceText').value = '';
+            localStorage.removeItem('searchText');
+            localStorage.removeItem('replaceText');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchTextInput = document.getElementById('searchText');
+            const replaceTextInput = document.getElementById('replaceText');
+            const textInput = document.getElementById('textInput');
+            const showInvisibleCheckbox = document.getElementById('showInvisible');
+            const visualizedTextGroup = document.getElementById('visualizedTextGroup');
+
+            // Відновлюємо збережені значення
+            searchTextInput.value = localStorage.getItem('searchText') || '';
+            replaceTextInput.value = localStorage.getItem('replaceText') || '';
+
+            // Зберігаємо значення при зміні
+            searchTextInput.addEventListener('input', function () {
+                localStorage.setItem('searchText', searchTextInput.value);
+            });
+
+            replaceTextInput.addEventListener('input', function () {
+                localStorage.setItem('replaceText', replaceTextInput.value);
+            });
+
+            // Логіка відображення/приховування поля з візуалізованими символами
+            showInvisibleCheckbox.addEventListener('change', function () {
+                if (this.checked) {
+                    visualizedTextGroup.style.display = 'block';
+                    updateVisualizedText(); // Оновлюємо вміст при активації
+                } else {
+                    visualizedTextGroup.style.display = 'none';
+                }
+            });
+
+            // Оновлення візуалізованого тексту при зміні основного тексту
+            textInput.addEventListener('input', function () {
+                if (showInvisibleCheckbox.checked) {
+                    updateVisualizedText();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
