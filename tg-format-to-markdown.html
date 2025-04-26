@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Конвертер тексту з Telegram у Markdown</title>
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #f2f2f7;
+    }
+    @media (orientation: portrait) {
+        body {
+            padding: 0 15px;
+        }
+    }
+    .form-group {
+        margin-bottom: 12px;
+    }
+    .block {
+        margin-bottom: 24px;
+    }
+    label {
+        display: block;
+        margin-bottom: 6px;
+        color: #1c1c1e;
+        font-weight: 500;
+    }
+    input, textarea {
+        width: 100%;
+        padding: 8px 10px;
+        border: 1px solid #d1d1d6;
+        border-radius: 10px;
+        background-color: #ffffff;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+    textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+    button {
+        background-color: #007aff;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-top: 8px;
+    }
+    button:hover {
+        background-color: #0066d6;
+    }
+    button:active {
+        background-color: #0055b3;
+    }
+    #outputText {
+        background-color: #eee;
+        padding: 8px 10px;
+        border: 1px solid #d1d1d6;
+        border-radius: 10px;
+        font-size: 16px;
+        min-height: 100px;
+        white-space: pre-wrap;
+        box-sizing: border-box;
+    }
+    .copy {
+        font-style: italic;
+        color: #aaa;
+        margin-top: 14px;
+    }
+    .copy a {
+        text-decoration: none;
+        color: #888;
+    }
+    .copy a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+
+<h2>Конвертація тексту Telegram у Markdown</h2>
+
+<div class="block">
+    <div class="form-group">
+        <label for="inputText">Текст для обробки:</label>
+        <textarea id="inputText" placeholder="Вставте текст сюди..."></textarea>
+        <button onclick="pasteFromClipboard()">Вставити з буфера</button>
+    </div>
+</div>
+
+<div class="block">
+    <div class="form-group">
+        <label for="wordCount">Кількість слів для прив'язки посилання:</label>
+        <input type="number" id="wordCount" value="1" min="1" max="10">
+    </div>
+    <div class="form-group">
+        <button onclick="convertText()">Конвертувати</button>
+    </div>
+</div>
+
+<div class="block">
+    <div class="form-group">
+        <label for="outputText">Результат:</label>
+        <textarea id="outputText" readonly></textarea>
+        <button onclick="copyResult()">Скопіювати результат</button>
+    </div>
+</div>
+
+<div class="copy">
+    Створено телеграм-каналом <a href="https://t.me/+XjkM4ZLP7JcxOGYy" title="Корисні та цікаві програми, застосунки, сервіси, ШІ та лайфхаки для ваших ґаджетів">Корисності для Ґаджетів 🇺🇦</a>
+</div>
+
+<script>
+function convertText() {
+    const text = document.getElementById('inputText').value;
+    const wordCount = parseInt(document.getElementById('wordCount').value) || 1;
+
+    const lines = text.split('\n').map(line => {
+        // Обробка рядків з "•" та посиланням (тільки якщо немає вже Markdown)
+        line = line.replace(/•\s([^[]+?)\s*\((https?:\/\/[^\s)]+)\)/g, (match, p1, p2) => {
+            const linkText = p1.trim();
+            return `• [${linkText}](${p2})`;
+        });
+
+        // Обробка звичайних посилань (тільки якщо немає вже Markdown)
+        line = line.replace(/([^[]+?)\s*\((https?:\/\/[^\s)]+)\)/g, (match, p1, p2) => {
+            // Перевірка на те, чи вже в тексті є квадратні дужки (означає, що це вже Markdown)
+            console.log('p1', p1);
+            if (p1.includes('[') || p1.includes(']')) {
+                return match; // Якщо є, нічого не змінюємо
+            }
+
+            const trimmed = p1.trim();
+            const words = trimmed.split(/\s+/);
+
+            if (words.length === 0) return match;
+
+            const lastWords = words.splice(-wordCount);
+            const beforeWords = words.join(' ');
+            const linkText = lastWords.join(' ');
+
+            return (beforeWords ? beforeWords + ' ' : '') + `[${linkText}](${p2})`;
+        });
+
+        return line;
+    });
+
+    document.getElementById('outputText').value = lines.join('\n').trim();
+}
+
+
+
+function copyResult() {
+    const output = document.getElementById('outputText');
+    output.focus();
+    output.select();
+    try {
+        document.execCommand('copy');
+    } catch (err) {
+        console.log('Не вдалося автоматично скопіювати');
+    }
+}
+
+function pasteFromClipboard() {
+    const input = document.getElementById('inputText');
+    navigator.clipboard.readText()
+        .then(text => {
+            input.value = text;
+        })
+        .catch(err => {
+            console.log('Не вдалося вставити з буфера');
+        });
+}
+</script>
+
+</body>
+</html>
